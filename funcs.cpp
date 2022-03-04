@@ -1,16 +1,38 @@
 #include <iostream>
 #include "funcs.h"
+
+
+
 using namespace std;
 
-void isDivisibleBy(int n, int d){
+bool isDivisibleBy(int n, int d){
+
+  if (d == 0){
+
+    cout << "false"<< endl;
+
+    return false;
+  }
+  else if (n == 0){
+
+    cout << "false"<< endl;
 
 
-  if (n % d == 0){
+    return false;
+  }
 
-    cout<<"true"<<endl;
+  else if (n % d == 0){
+
+    cout << "true"<< endl;
+
+
+    return true;
   }
   else{
-    cout<<"false"<<endl;
+
+    cout << "false"<< endl;
+
+    return false;
 
   }
 
@@ -20,108 +42,188 @@ void isDivisibleBy(int n, int d){
 
 
 
-void isPrime(int n){
+bool isPrime(int n){
+
+  if (n == 0 || n == 1 || n < 0){
+
+    cout << "not prime" << endl;
+
+    return false;
+  }
+  else if (n = 2){
+
+    cout << "is Prime" << endl;
+
+    return true;
+  }
+
 
   for (int i = 2; i < n; i++)
      {
          if (n % i == 0 && i != n)
-         cout<<"false"<<endl;
 
+         cout << "not prime" << endl;
+
+         return false;
      }
-     cout<< true <<endl;
-
-}
-
-void nextPrime(int n){
-
-int i;
-
-while (i > n)
-   {
-       if (n % i == 0 && i != n)
-       cout<<"false"<<endl;
-       i = i + 2;
-   }
-   cout<< i <<endl;
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
-
-void countPrimes(int a, int b){
-
-   int p, i;
-   while (a <= b) {
-      p = 0;
-      for(i = 2; i <= a/2; i++) {
-         if(a % i == 0) {
-            p = 1;
-            break;
-         }
-      }
-      if (p == 0)
-      cout<<a<<" ";
-      a++;
-   }
-}
-
-void isTwinPrime(int n){
-
-  for (int i = 3; i < n; i++)
-     {
-
-        if (n % (i+2) == 0 && i != n)
-
-              cout<<"false"<<endl;
-
-     }
-     cout<<"true"<<endl;
-
-
-
+     cout << "is prime" << endl;
+     return true;
 
 }
 
 
-//void nextTwinPrime(int n){
+bool Prime(int n)
+{
+
+  if (n <= 1){
+    return false;
+  }
+
+
+    for(int i = 2; i < n; i++)
+    {
+        if ((n%i) == 0)
+            return false;
+
+    }
+    return true;
+  }
 
 
 
 
 
 
-//}
+int nextPrime(int n){
+/* Another way
 
-void largestTwinPrime(int a, int b){
+{
+ for(int i = n + 1; i < n * n; i++){
 
+   int b = 0;
+  for (int c = 1; c < i; c++){
 
-     int p, i;
-     while (a <= b) {
-        p = 0;
-        for(i = 2; i <= a/2; i++) {
-           if(a % i == 0) {
-              p = 1;
-              break;
-           }
-        }
-        if (p == 0)
-        cout<<a<<" ";
-        a++;
-     }
+    if (i % c == 0)
+    b++;
+  }
+  if (b == 2){
+
+    return i;
+  }
 
 
+ }
+ return -1;
+}
+*/
+
+while (!Prime(++n))
+{ }
+cout << n << endl;
+return n;
+}
+
+int countPrimes(int a, int b){
+
+  int p = 0;
+  for (int i = a; i <= b; i++){
+
+    if (Prime(i) == true){
+
+      p += 1;
 
 
+
+    }
+
+
+
+
+  }
+    cout << p << endl;
+   return p;
+}
+
+
+
+bool isTwinPrime(int n){
+
+int i, z;
+
+i = n - 2;
+z = n + 2;
+if ((Prime(n) == true) && ((Prime(i) == true) || (Prime(z) == true))){
+
+  cout << "is Twin Prime" << endl;
+  return true;
+
+}
+
+else{
+  cout << "not Twin Prime" << endl;
+  return false;
+
+}
+}
+
+
+bool Twin(int n){
+
+int i, z;
+
+i = n - 2;
+z = n + 2;
+if ((Prime(n) == true) && ((Prime(i) == true) || (Prime(z) == true))){
+
+
+  return true;
+
+}
+
+else{
+
+  return false;
+
+}
+}
+
+
+
+
+int nextTwinPrime(int n){
+
+  n += 1;
+  while (Twin(n) == false){
+    n += 1;
+  }
+  cout << n << endl;
+  return n;
+
+}
+/*
+  int i = n + 1;
+  while(1){
+    if (Prime(i) && Prime(i+2)||(Prime(i) && Prime(i-2))){
+
+      return i;
+    }
+    i++;
+  }
+
+}
+*/
+
+int largestTwinPrime(int a, int b){
+
+  for (int i = b; i >= a; i--){
+
+    if (Twin(i) == true){
+      cout << i << endl;
+      return i;
+    }
+  }
+ cout << "no twin primes in interval" << endl;
+ return -1;
 
 
 }
